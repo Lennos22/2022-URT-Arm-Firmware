@@ -65,8 +65,8 @@ all:
 main-build: arm-firmware.elf secondary-outputs
 
 # Tool invocations
-arm-firmware.elf arm-firmware.map: $(OBJS) $(USER_OBJS) /home/nelson/STM32CubeIDE/urt/arm_firmware/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "arm-firmware.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/nelson/STM32CubeIDE/urt/arm_firmware/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="arm-firmware.map" -Wl,--gc-sections -static -L/home/nelson/STM32CubeIDE/urt/arm_firmware/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+arm-firmware.elf arm-firmware.map: $(OBJS) $(USER_OBJS) /home/nelson/STM32CubeIDE/urt/arm-firmware/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "arm-firmware.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/nelson/STM32CubeIDE/urt/arm-firmware/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="arm-firmware.map" -Wl,--gc-sections -static -L/home/nelson/STM32CubeIDE/urt/arm-firmware/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -86,7 +86,7 @@ clean:
 	-@echo ' '
 
 pre-build:
-	docker pull microros/micro_ros_static_library_builder:foxy && docker run --rm -v /home/nelson/STM32CubeIDE/urt/arm_firmware:/project --env MICROROS_LIBRARY_FOLDER=micro_ros_stm32cubemx_utils/microros_static_library_ide microros/micro_ros_static_library_builder:foxy
+	docker pull microros/micro_ros_static_library_builder:foxy && docker run --rm -v /home/nelson/STM32CubeIDE/urt/arm-firmware:/project --env MICROROS_LIBRARY_FOLDER=micro_ros_stm32cubemx_utils/microros_static_library_ide microros/micro_ros_static_library_builder:foxy
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
