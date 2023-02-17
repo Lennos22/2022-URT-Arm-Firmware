@@ -36,10 +36,10 @@ TODO...
 
 1. Install [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) and open it
 2. **Optional:** Install EGit in the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for EGit)
-3. Either clone the repo and import it as an STM32CubeIDE project, or you can import the project using EGit (`File -> Import` and select `Git -> Projects from Git`) if you installed it
-4. Ensure [Docker is installed](https://docs.docker.com/engine/install/ubuntu/) on your machine and that [non-privileged users can run Docker](https://docs.docker.com/engine/install/linux-postinstall/)
+3. Either clone the repo and import it as an STM32CubeIDE project, or you can import the project using EGit (`File -> Import` and select `Git -> Projects from Git`) if you installed it  
 (Note that [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) is a submodule of the repo, and for some reason submodules have Detached HEADs when they're cloned. You may want to ensure that you `git checkout` the `foxy` branch before you move on to the next step, though, from my testing, this doesn't seem completely necessary. Still, it doesn't hurt...)
-5. Add the packages listed in [Ros 2 Packages](#ros-2-packages) to the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) build system (see [here](#adding-custom-packages))
+4. Ensure [Docker is installed](https://docs.docker.com/engine/install/ubuntu/) on your machine and that [non-privileged users can run Docker](https://docs.docker.com/engine/install/linux-postinstall/)
+5. Add the packages listed in [ROS 2 Packages](#ros-2-packages) to the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) build system (see [here](#adding-custom-packages))
 ```
 May have to tweak 5. depending on where the packages are gonna be stored...
 ```
