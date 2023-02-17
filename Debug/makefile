@@ -38,23 +38,23 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := arm_firmware
+BUILD_ARTIFACT_NAME := arm-firmware
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-arm_firmware.elf \
+arm-firmware.elf \
 
 MAP_FILES += \
-arm_firmware.map \
+arm-firmware.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-arm_firmware.list \
+arm-firmware.list \
 
 
 # All Target
@@ -62,11 +62,11 @@ all:
 	+@$(MAKE) --no-print-directory pre-build && $(MAKE) --no-print-directory main-build
 
 # Main-build Target
-main-build: arm_firmware.elf secondary-outputs
+main-build: arm-firmware.elf secondary-outputs
 
 # Tool invocations
-arm_firmware.elf arm_firmware.map: $(OBJS) $(USER_OBJS) /home/nelson/STM32CubeIDE/urt/arm_firmware/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "arm_firmware.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/nelson/STM32CubeIDE/urt/arm_firmware/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="arm_firmware.map" -Wl,--gc-sections -static -L/home/nelson/STM32CubeIDE/urt/arm_firmware/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+arm-firmware.elf arm-firmware.map: $(OBJS) $(USER_OBJS) /home/nelson/STM32CubeIDE/urt/arm_firmware/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "arm-firmware.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/nelson/STM32CubeIDE/urt/arm_firmware/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="arm-firmware.map" -Wl,--gc-sections -static -L/home/nelson/STM32CubeIDE/urt/arm_firmware/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -75,14 +75,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-arm_firmware.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "arm_firmware.list"
+arm-firmware.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "arm-firmware.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) arm_firmware.elf arm_firmware.list arm_firmware.map default.size.stdout
+	-$(RM) arm-firmware.elf arm-firmware.list arm-firmware.map default.size.stdout
 	-@echo ' '
 
 pre-build:
