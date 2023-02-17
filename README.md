@@ -1,6 +1,6 @@
 # Arm Firmware
 
-The robotic arm firmware for controlling the movement of the arm.
+The robotic arm firmware for controlling the movement of the arm. **(This sentence is incredibly stupid and redundant. Who the hell wrote this...?)**
 
 - [Dependencies](#dependencies)
 - [Installation](#installation)
@@ -44,7 +44,7 @@ TODO... Link The appropriate package repo or smth, idk...
 
 ## Rebuilding micro-ROS
 
-Must be performed when `micro_ros_stm32cubemx_utils` is updated, a change in the `micro_ros_stm32cubemex_utils` is required, or when a new [ROS 2 package](#ros-2-packages) has been added.
+Must be performed when `micro_ros_stm32cubemx_utils` is updated, a change in the `micro_ros_stm32cubemex_utils` distro is required, or when a new [ROS 2 package dependency](#ros-2-packages) has been added.
 
 To rebuild, follow these steps:
 ```
