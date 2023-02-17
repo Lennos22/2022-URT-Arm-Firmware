@@ -45,6 +45,10 @@ TODO... Link The appropriate package repo or smth, idk...
 
 ### Adding Custom Packages
 
+Add your packages to `microros_static_library_ide/library_generation/extra-packages/` or, if you have your packages stored in an online repository, the folder also contains a file called `extra_packages.repos` where you can add an entry containing your package repo information.
+
+More information can be found [here](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils#adding-custom-packages).
+
 ## Rebuilding micro-ROS
 
 Must be performed when `micro_ros_stm32cubemx_utils` is updated, a change in the `micro_ros_stm32cubemex_utils` distro is required, or when a new [ROS 2 package dependency](#ros-2-packages) has been added.
