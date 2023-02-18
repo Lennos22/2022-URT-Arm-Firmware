@@ -36,13 +36,12 @@ The robotic arm firmware for controlling the movement of the arm. **(This senten
 
 4. **Important:** Replace all instances of `${workspace_loc:/${ProjName}}` in `Project -> Properties` with the with the `<ABSOLUTE_PATH>` to the project. E.g: `C:/Users/<USERNAME>/STM32CubeIDE/arm-firmware` (note the use of **forward slashes**):
     - Go to `Project -> Properties -> C/C++ Build -> Settings` and select the `Build Steps` tab. In the `Pre-build steps` you will see on the `Command` line:
-```
-docker pull microros/micro_ros_static_library_builder:foxy && docker run --rm -v ${workspace_loc:/${ProjName}}:/project --env MICROROS_LIBRARY_FOLDER=micro_ros_stm32cubemx_utils/microros_static_library_ide microros/micro_ros_static_library_builder:foxy
-```
+	```
+	docker pull microros/micro_ros_static_library_builder:foxy && docker run --rm -v ${workspace_loc:/${ProjName}}:/project --env MICROROS_LIBRARY_FOLDER=micro_ros_stm32cubemx_utils/microros_static_library_ide microros/micro_ros_static_library_builder:foxy
+	```
     - Go to `Project -> Properties -> C/C++ Build -> Settings` and on the `Tool Settings` tab, select `MCU GCC Linker -> Libraries`. You will see `${workspace_loc:/${ProjName}}/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros` in `Library search path (-L)`
 5. [Install Docker](https://www.docker.com/) on your machine and ensure that it is running (Docker **must be running** every time you build the project) 
-6. **Important:** Add the packages listed in [ROS 2 Packages](#ros-2-packages) to the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) build system (see the [Adding Custom Packages](#adding-custom-packages) section)
-``(May have to tweak this step depending on where the packages are gonna be stored...)``
+6. **Important:** Add the packages listed in [ROS 2 Packages](#ros-2-packages) to the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) build system (see the [Adding Custom Packages](#adding-custom-packages) section) **{May have to tweak this step depending on where the packages are gonna be stored...}**
 7. Build and run the project!
 
 ### Linux
@@ -54,8 +53,7 @@ docker pull microros/micro_ros_static_library_builder:foxy && docker run --rm -v
 (Note that [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) is a submodule of the repo, and for some reason submodules have their HEADs on the non-`Main` branches detached when they're cloned. You may want to ensure that you `git checkout` the `foxy` branch before you move on to the next step. Though, from my testing, this doesn't seem completely necessary. Still, it doesn't hurt...)  
 
 4. Ensure [Docker is installed](https://docs.docker.com/engine/install/ubuntu/) on your machine and that [non-privileged users can run Docker](https://docs.docker.com/engine/install/linux-postinstall/)
-5. **Important:** Add the packages listed in [ROS 2 Packages](#ros-2-packages) to the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) build system (see the [Adding Custom Packages](#adding-custom-packages) section)
-``(May have to tweak this step depending on where the packages are gonna be stored...)``
+5. **Important:** Add the packages listed in [ROS 2 Packages](#ros-2-packages) to the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) build system (see the [Adding Custom Packages](#adding-custom-packages) section) **{May have to tweak above step depending on where the packages are gonna be stored...}**
 6. Build and run the project!
 
 ## ROS 2 Packages
