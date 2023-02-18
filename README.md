@@ -36,13 +36,21 @@ There's some minor, yet important, differences when building on either Operating
 
 ## Windows
 
-### 1. Import source code to STM32CubeIDE
+### 1. Import repository to STM32CubeIDE
 
 There are two ways you can do this:
-- **Option A:** Install EGit using the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for "EGit") and import the project in STM32CubeIDE via `File -> Import` and select `Git -> Projects from Git` (ensure you have "Clone submodules" ticked)
-- **Option B:** Clone the repository and checkout the `stm32` branch. **MAKE SURE you fetch the submodules**. Then, open STM32CubeIDE and import the project. 
+- **Option A:** Install EGit using the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for "EGit") and import the project in STM32CubeIDE via `File -> Import` and select `Git -> Projects from Git`
+	- You need to select the `stm32` branch
+	- Ensure "Clone submodules" is ticked
+- **Option B:** Clone the repository and checkout the `stm32` branch. **MAKE SURE you fetch the submodules**. Then, open STM32CubeIDE and import the project
+```
+git clone https://gitlab.unimelb.edu.au/urt-software/arm-firmware.git
+cd arm-firmware
+git checkout stm32
+git submodule update --init --recursive
+```
 
-(Note that [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) is a submodule of the repo, and for some reason submodules have their HEADs on the non-`Main` branches detached when they're cloned. You may want to ensure that you `git checkout` the `foxy` branch before you move on to the next step. Though, from my testing, this doesn't seem completely necessary. Still, it doesn't hurt...)  
+(**Note** that [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) is a submodule of the repo, and for some reason submodules have their HEADs on the non-`Main` branches detached when they're cloned. You may want to ensure that you `git checkout` the `foxy` branch before you move on to the next step. Though, from my testing, this doesn't seem completely necessary. Still, it doesn't hurt...)  
 
 ### 2. Set up the build project
 
@@ -70,10 +78,18 @@ Ensure that **Docker is running** everytime you build
 ### 1. Import source code to STM32CubeIDE
 
 There are two ways you can do this:
-- **Option A:** Install EGit using the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for "EGit") and import the project in STM32CubeIDE via `File -> Import` and select `Git -> Projects from Git` (ensure you have "Clone submodules" ticked)
-- **Option B:** Clone the repository and checkout the `stm32` branch. **MAKE SURE you fetch the submodules**. Then, open STM32CubeIDE and import the project. 
+- **Option A:** Install EGit using the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for "EGit") and import the project in STM32CubeIDE via `File -> Import` and select `Git -> Projects from Git`
+	- You need to select the `stm32` branch
+	- Ensure "Clone submodules" is ticked
+- **Option B:** Clone the repository and checkout the `stm32` branch. **MAKE SURE you fetch the submodules**. Then, open STM32CubeIDE and import the project
+```
+git clone https://gitlab.unimelb.edu.au/urt-software/arm-firmware.git
+cd arm-firmware
+git checkout stm32
+git submodule update --init --recursive
+```
 
-(Note that [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) is a submodule of the repo, and for some reason submodules have their HEADs on the non-`Main` branches detached when they're cloned. You may want to ensure that you `git checkout` the `foxy` branch before you move on to the next step. Though, from my testing, this doesn't seem completely necessary. Still, it doesn't hurt...)  
+(**Note** that [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) is a submodule of the repo, and for some reason submodules have their HEADs on the non-`Main` branches detached when they're cloned. You may want to ensure that you `git checkout` the `foxy` branch before you move on to the next step. Though, from my testing, this doesn't seem completely necessary. Still, it doesn't hurt...)  
 
 ### 2. Ensure that that [non-privileged users can run Docker](https://docs.docker.com/engine/install/linux-postinstall/)
 
