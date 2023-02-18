@@ -5,7 +5,7 @@ The robotic arm firmware for controlling the movement of the arm. **(This senten
 - [Arm Firmware](#arm-firmware)
 	- [Dependencies](#dependencies)
 	- [Prerequisites](#prerequisites)
-- [Installation](#installation)
+- [Build Instructions](#build-instructions)
 	- [Windows](#windows)
 	- [Linux](#linux)
 - [ROS 2 Packages](#ros-2-packages)
@@ -24,41 +24,66 @@ The robotic arm firmware for controlling the movement of the arm. **(This senten
 
 - [STM32CubeIDE (version 1.11.2)](https://www.st.com/en/development-tools/stm32cubeide.html)
 - [Docker](https://www.docker.com)
+	- You can install [Docker Desktop](https://www.docker.com/)
+
+		OR
+	- You can install [Docker Engine](https://docs.docker.com/engine/install/ubuntu/) using `apt` repository on Ubuntu
 - [Git](https://git-scm.com/)
 
-# Installation
+# Build Instructions
+
+There's some minor, yet important, differences when building on either Operating System.
 
 ## Windows
 
-Install [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) and run it
-**Optional:** Install EGit in the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for EGit)
-Either clone the repo (don't forget to `init` and `update` the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) submodule) and import it as an STM32CubeIDE project, **or** you can import the project using EGit via `File -> Import` and select `Git -> Projects from Git` (ensure you have "Clone submodules" ticked)  
+### 1. Import source code to STM32CubeIDE
+
+There are two ways you can do this:
+- **Option A:** Install EGit using the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for "EGit") and import the project in STM32CubeIDE via `File -> Import` and select `Git -> Projects from Git` (ensure you have "Clone submodules" ticked)
+- **Option B:** Clone the repository and checkout the `stm32` branch. **MAKE SURE you fetch the submodules**. Then, open STM32CubeIDE and import the project. 
 
 (Note that [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) is a submodule of the repo, and for some reason submodules have their HEADs on the non-`Main` branches detached when they're cloned. You may want to ensure that you `git checkout` the `foxy` branch before you move on to the next step. Though, from my testing, this doesn't seem completely necessary. Still, it doesn't hurt...)  
 
-**Important:** Replace all instances of `${workspace_loc:/${ProjName}}` in `Project -> Properties` with the with the `<ABSOLUTE_PATH>` to the project. E.g: `C:/Users/<USERNAME>/STM32CubeIDE/arm-firmware` (note the use of **forward slashes**):  
-- Go to `Project -> Properties -> C/C++ Build -> Settings` and select the `Build Steps` tab. In the `Pre-build steps` you will see on the `Command` line:
+### 2. Set up the build project
+
+Replace all instances of `${workspace_loc:/${ProjName}}` in `Project -> Properties` with the with the `<ABSOLUTE_PATH>` to the project. E.g: `C:/Users/<USERNAME>/STM32CubeIDE/arm-firmware` (note the use of **forward slashes**).
+
+In `Project -> Properties -> C/C++ Build -> Settings`, there are two instances:
+1. In the `Tool Settings` tab, select `MCU GCC Linker -> Libraries`. You will see `${workspace_loc:/${ProjName}}/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros` in `Library search path (-L)`
+2. In the `Build Steps` tab. you will see on the `Command` line in `Pre-build steps`:
 ```
 docker pull microros/micro_ros_static_library_builder:foxy && docker run --rm -v ${workspace_loc:/${ProjName}}:/project --env MICROROS_LIBRARY_FOLDER=micro_ros_stm32cubemx_utils/microros_static_library_ide microros/micro_ros_static_library_builder:foxy
 ```
-- Go to `Project -> Properties -> C/C++ Build -> Settings` and on the `Tool Settings` tab, select `MCU GCC Linker -> Libraries`. You will see `${workspace_loc:/${ProjName}}/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros` in `Library search path (-L)`
-[Install Docker](https://www.docker.com/) on your machine and ensure that it is running (Docker **must be running** every time you build the project) 
-**Important:** Add the packages listed in [ROS 2 Packages](#ros-2-packages) to the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) build system (see the [Adding Custom Packages](#adding-custom-packages) section)
-> May have to tweak the above step depending on where the packages are gonna be stored...
-Build and run the project!
+
+### 3. Get packages listed in [ROS 2 Packages](#ros-2-packages)
+
+See the [Adding Custom Packages](#adding-custom-packages) section
+
+> **Note** I don't quite know where to put the packages, yet...
+
+### 4. Build and run the project!
+
+Ensure that **Docker is running** everytime you build
 
 ## Linux
 
-Install [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) and run it
-**Optional:** Install EGit in the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for EGit)
-Either clone the repo (don't forget to `init` and `update` the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) submodule) and import it as an STM32CubeIDE project, **or** you can import the project using EGit via `File -> Import` and select `Git -> Projects from Git` (ensure you have "Clone submodules" ticked)  
+### 1. Import source code to STM32CubeIDE
+
+There are two ways you can do this:
+- **Option A:** Install EGit using the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for "EGit") and import the project in STM32CubeIDE via `File -> Import` and select `Git -> Projects from Git` (ensure you have "Clone submodules" ticked)
+- **Option B:** Clone the repository and checkout the `stm32` branch. **MAKE SURE you fetch the submodules**. Then, open STM32CubeIDE and import the project. 
 
 (Note that [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) is a submodule of the repo, and for some reason submodules have their HEADs on the non-`Main` branches detached when they're cloned. You may want to ensure that you `git checkout` the `foxy` branch before you move on to the next step. Though, from my testing, this doesn't seem completely necessary. Still, it doesn't hurt...)  
 
-Ensure [Docker is installed](https://docs.docker.com/engine/install/ubuntu/) on your machine and that [non-privileged users can run Docker](https://docs.docker.com/engine/install/linux-postinstall/)
-**Important:** Add the packages listed in [ROS 2 Packages](#ros-2-packages) to the [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) build system (see the [Adding Custom Packages](#adding-custom-packages) section)
-> May have to tweak above step depending on where the packages are gonna be stored...
-Build and run the project!
+### 2. Ensure that that [non-privileged users can run Docker](https://docs.docker.com/engine/install/linux-postinstall/)
+
+### 3. Get packages listed in [ROS 2 Packages](#ros-2-packages)
+
+See the [Adding Custom Packages](#adding-custom-packages) section
+
+> **Note** I don't quite know where to put the packages, yet...
+
+### 4. Build and run the project!
 
 # ROS 2 Packages
 
