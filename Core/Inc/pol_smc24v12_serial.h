@@ -12,6 +12,7 @@
 #include "stm32f4xx_hal.h"
 
 /* Exported functions prototypes ---------------------------------------------*/
+void pol_set_baud_rate(UART_HandleTypeDef* huart);
 void pol_SMC_set_speed(UART_HandleTypeDef* huart, uint8_t dev, int16_t speed);
 
 
