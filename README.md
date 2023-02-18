@@ -2,9 +2,10 @@
 
 The robotic arm firmware for controlling the movement of the arm. **(This sentence is incredibly stupid and redundant. Who the hell wrote this...?)**
 
-- [Dependencies](#dependencies)
-- [Installation](#installation)
+- [Arm Firmware](#arm-firmware)
+	- [Dependencies](#dependencies)
 	- [Prerequisites](#prerequisites)
+- [Installation](#installation)
 	- [Windows](#windows)
 	- [Linux](#linux)
 - [ROS 2 Packages](#ros-2-packages)
@@ -19,14 +20,15 @@ The robotic arm firmware for controlling the movement of the arm. **(This senten
 - [micro-ROS](https://micro.ros.org/)
 	- [micro_ros_stm32cubemx_utils](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils)
 
-## Installation
-
-### Prerequisites
+## Prerequisites
 
 - [STM32CubeIDE (version 1.11.2)](https://www.st.com/en/development-tools/stm32cubeide.html)
 - [Docker](https://www.docker.com)
+- [Git](https://git-scm.com/)
 
-### Windows
+# Installation
+
+## Windows
 
 Install [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) and run it
 **Optional:** Install EGit in the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for EGit)
@@ -45,7 +47,7 @@ docker pull microros/micro_ros_static_library_builder:foxy && docker run --rm -v
 > May have to tweak the above step depending on where the packages are gonna be stored...
 Build and run the project!
 
-### Linux
+## Linux
 
 Install [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) and run it
 **Optional:** Install EGit in the STM32CubeIDE Eclipse Marketplace (`Help -> Eclipse Marketplace` and search for EGit)
@@ -58,19 +60,19 @@ Ensure [Docker is installed](https://docs.docker.com/engine/install/ubuntu/) on 
 > May have to tweak above step depending on where the packages are gonna be stored...
 Build and run the project!
 
-## ROS 2 Packages
+# ROS 2 Packages
 
 No packages to add, currently :D
 
 > TODO... Link The appropriate package repo(s) or smth, idk...
 
-### Adding Custom Packages
+## Adding Custom Packages
 
 Add your packages to `microros_static_library_ide/library_generation/extra-packages` folder or, if you have your packages stored in an online repository, the folder also contains a file called `extra_packages.repos` where you can add an entry containing your package repo.
 
 More information can be found [here](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils#adding-custom-packages).
 
-## Rebuilding micro-ROS
+# Rebuilding micro-ROS
 
 You will generally want to do this when [`micro_ros_stm32cubemx_utils`](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) is updated; a change in the `micro_ros_stm32cubemex_utils` distro is required; or when a new [ROS 2 package dependency](#ros-2-packages) has been added.
 
