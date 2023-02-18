@@ -26,7 +26,7 @@ void pol_set_baud_rate(UART_HandleTypeDef* huart) {
 	HAL_UART_Transmit(huart, (uint8_t[]){HEADER_BYTE}, 1, HAL_MAX_DELAY);
 }
 
-void pol_SMC_set_speed(UART_HandleTypeDef* huart, uint8_t dev, int16_t speed) {
+void pol_SMC_set_speed(UART_HandleTypeDef* huart, uint8_t dev_num, int16_t speed) {
 	uint8_t motor_dir = POL_MOTOR_FORWARD;
 
 	if (speed < 0) {
@@ -42,7 +42,7 @@ void pol_SMC_set_speed(UART_HandleTypeDef* huart, uint8_t dev, int16_t speed) {
 	// Generate the low and high data bytes of the speed parameter
 	uint8_t data[] = {speed & 0x1F, speed >> 5};
 
-	pol_transmit_packet(huart, dev, motor_dir, data, 2);
+	pol_transmit_packet(huart, dev_num, motor_dir, data, 2);
 }
 
 void pol_transmit_packet(UART_HandleTypeDef* huart, uint8_t dev, uint8_t cmd, uint8_t* data, size_t data_size) {
