@@ -15,13 +15,21 @@
 #define POL_EXIT_SAFESTART		0x03
 #define POL_MOTOR_FORWARD    	0X05
 #define POL_MOTOR_REVERSE    	0X06
+#define POL_MOTOR_FWD_7BIT		0x09
+#define POL_MOTOR_RVRS_7BIT		0x0A
 #define POL_MOTOR_BRAKE      	0x12
+#define POL_GET_VAR				0x21
+#define POL_SET_MOTOR_LIMIT		0x22
+#define	POL_GET_FIRMWARE		0x42
+#define POL_STOP_MOTOR			0x60
+
 
 #define MAX_MOTOR_SPEED         3200
 
 /* Private function prototypes -----------------------------------------------*/
 void pol_transmit_packet(UART_HandleTypeDef* huart, uint8_t dev, uint8_t cmd, uint8_t* data, size_t data_size);
 
+/* Exported functions ---------------------------------------------------------*/
 void pol_set_baud_rate(UART_HandleTypeDef* huart) {
 	HAL_UART_Transmit(huart, (uint8_t[]){HEADER_BYTE}, 1, HAL_MAX_DELAY);
 }
