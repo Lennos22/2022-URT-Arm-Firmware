@@ -89,24 +89,63 @@
  *  @}
  */
 
-/* Exported functions prototypes ---------------------------------------------*/
-/**
- * @brief	Sets the baud rate of the SMC drivers on the line to the MCU's
- * @param 	huart Pointer to a UART_HandleTypeDef structure that contains
- * 		  		  the configuration information for the specified UART module.
- * @retval 	None
+/** @defgroup pol_SMC_limit_ids Pololu SMC Limit IDs
+ *  @{
  */
-void pol_set_baud_rate(UART_HandleTypeDef* huart);
-/**
- * @brief	Sets the speed of a DC Motor
- * @param	huart Pointer to a UART_HandleTypeDef structure that contains
- * 		  		  the configuration information for the specified UART module.
- * @param	dev_num The Device Number configured in the Simple Motor Control
- * 					Center.
- * @param	speed The speed to set the motor. (between -3200 and 3200, inc.)
- * @retval	None
- */
-void pol_SMC_set_speed(UART_HandleTypeDef* huart, uint8_t dev_num, int16_t speed);
 
+#define SPEED_FORWARD_LIM_ID	0x04
+#define ACCEL_FORWARD_LIM_ID	0x05
+#define	DECEL_FORWARD_LIM_ID	0x06
+#define	BRK_DURTN_FWD_LIM_ID	0x07
+#define SPEED_REVERSE_LIM_ID	0x08
+#define ACCEL_REVERSE_LIM_ID	0x09
+#define	DECEL_REVERSE_LIM_ID	0x0A
+#define	BRK_DURTN_BWD_LIM_ID	0x0B
+
+#define SPEED_SYMMTRC_LIM_ID	0x00
+#define ACCEL_SYMMTRC_LIM_ID	0x01
+#define	DECEL_SYMMTRC_LIM_ID	0x02
+#define	BRK_DURTN_SYM_LIM_ID	0x03
+
+/**
+ *  @}
+ */
+
+/* Exported functions prototypes ---------------------------------------------*/
+/** @addtogroup SMC_exported_functions Pololu SMC Exported Functions
+ *  @{
+ */
+
+void SMC_set_baud_rate(UART_HandleTypeDef* huart);
+
+/** @addtogroup pol_SMC_exported_functions Pololu Protocol SMC Exported Functions
+ *  @{
+ */
+
+void pol_SMC_set_speed(UART_HandleTypeDef* huart, uint8_t dev_num, int16_t speed);
+void pol_SMC_set_spd_7b(UART_HandleTypeDef* huart, uint8_t dev_num, int8_t speed);
+void pol_SMC_set_brake(UART_HandleTypeDef* huart, uint8_t dev_num, uint8_t brake_val);
+uint16_t pol_SMC_get_variable(UART_HandleTypeDef* huart, uint8_t dev_num, uint8_t var_id);
+void pol_SMC_set_motor_limit(UART_HandleTypeDef* huart, uint8_t dev_num, uint8_t limit_id, uint16_t new_limit);
+void pol_SMC_get_firmware_ver(UART_HandleTypeDef* huart, uint8_t dev_num);
+void pol_SMC_stop_motor(UART_HandleTypeDef* huart, uint8_t dev_num);
+
+/**
+ *  @}
+ */
+
+/** @addtogroup mini_SSC_SMC_exported_functions Mini SSC Protocol SMC Exported Functions
+ *  @{
+ */
+
+void mini_SMC_set_speed(UART_HandleTypeDef* huart, uint8_t dev_num, uint8_t speed);
+
+/**
+ *  @}
+ */
+
+/**
+ *  @}
+ */
 
 #endif /* INC_POL_SMC24V12_SERIAL_H_ */
