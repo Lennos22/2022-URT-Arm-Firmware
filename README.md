@@ -8,6 +8,7 @@ The robotic arm firmware for controlling the movement of the arm. **(This senten
 - [Build Instructions](#build-instructions)
 	- [Windows](#windows)
 	- [Linux](#linux)
+- [Interfacing with ROS 2](#interfacing-with-ros-2)
 - [ROS 2 Packages](#ros-2-packages)
 	- [Adding Custom Packages](#adding-custom-packages)
 - [Rebuilding micro-ROS](#rebuilding-micro-ros)
