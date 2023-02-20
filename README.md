@@ -101,6 +101,10 @@ See the [Adding Custom Packages](#adding-custom-packages) section
 
 ### 4. Build and run the project!
 
+# Interfacing with ROS 2
+
+> TODO... For now, go to [First micro-ROS Application on FreeRTOS](https://micro.ros.org/docs/tutorials/core/first_application_rtos/freertos/) for more information 
+
 # ROS 2 Packages
 
 No packages to add, currently :D
