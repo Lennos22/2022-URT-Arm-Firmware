@@ -111,7 +111,7 @@
  *  @}
  */
 
-/* Exported functions prototypes ---------------------------------------------*/
+/* Exported functions ---------------------------------------------------------*/
 /** @addtogroup SMC_exported_functions Pololu SMC Exported Functions
  *  @{
  */
