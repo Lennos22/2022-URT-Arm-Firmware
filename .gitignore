@@ -1,1 +1,8 @@
+# Ignore ALL FILES in the root Debug folder
 /Debug/
+
+# ignore ALL FILES in .settings folder
+/.settings/
+
+# ignore ALL .launch files
+*.launch
