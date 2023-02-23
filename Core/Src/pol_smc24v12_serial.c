@@ -30,7 +30,7 @@
 #define MAX_SPEED_LIMIT			3200
 #define MAX_ACCEL_LIMIT			3200
 #define MAX_DECEL_LIMIT			3200
-#define MAX_BRK_DURATION_LIMIT	16384	/*!<Units are 4ms instead of 1ms, so UINT16_MAX / 4 */
+#define MAX_BRK_DURATION_LIMIT	16384	//!<Units are 4ms instead of 1ms, so UINT16_MAX / 4
 
 #define MAX_SPEED_7BIT			INT8_MAX
 #define BRAKE_LIMIT				32

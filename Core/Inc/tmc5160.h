@@ -1,12 +1,12 @@
 /*
- * tmc5160_defs.h
+ * tmc5160.h
  *
- *  Created on: 21 Feb. 2023
+ *  Created on: 23 Feb. 2023
  *      Author: nelson
  */
 
-#ifndef INC_TMC5160_DEF_H_
-#define INC_TMC5160_DEF_H_
+#ifndef INC_TMC5160_H_
+#define INC_TMC5160_H_
 
 /* Exported constants --------------------------------------------------------*/
 // Register memory map
@@ -92,13 +92,4 @@
 #define TMC5160_PWM_AUTO				(TMC5160_MOTOR_DRIVER_BASE + 0x12U)
 #define TMC5160_LOST_STEPS				(TMC5160_MOTOR_DRIVER_BASE + 0x13U)
 
-// Important defines
-#define TMC5160_SPI_DATAGRAM_SIZE		5
-#define TMC5160_WRITE_BIT				0x80U
-
-/* Exported macro ------------------------------------------------------------*/
-#define DATA_BYTE(data, index)			((uint8_t) ((data) >> (4 - (index))*8))
-#define DATA_SIGNED(data, index)		((int32_t)data << (4 - (index))*8)
-#define DATA_UNSIGNED(data, index)		((uint32_t)data << (4 - (index))*8)
-
-#endif /* INC_TMC5160_DEF_H_ */
+#endif /* INC_TMC5160_H_ */

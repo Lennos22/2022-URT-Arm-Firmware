@@ -9,10 +9,13 @@
 #define INC_TMC5160_SPI_H_
 
 /* Includes ------------------------------------------------------------------*/
-#include "tmc5160_def.h"
+#include <tmc5160_spi_def.h>
+#include <tmc5160.h>
 #include "stm32f4xx_hal.h"
 
 /* Exported constants --------------------------------------------------------*/
+
+/* Exported macro ------------------------------------------------------------*/
 
 /* Exported functions --------------------------------------------------------*/
 void TMC5160_write_value(SPI_HandleTypeDef* hspi, uint8_t addr, uint32_t data);
