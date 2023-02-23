@@ -18,10 +18,10 @@ void TMC5160_read_write_array(SPI_HandleTypeDef* hspi, uint8_t* buf, size_t size
 /* Exported functions ---------------------------------------------------------*/
 /**
  * @brief	Write 32-bit value to register.
- * @param	hspi hspi pointer to a SPI_HandleTypeDef structure that contains
+ * @param	hspi pointer to a SPI_HandleTypeDef structure that contains
  *               the configuration information for SPI module.
- * @param	addr Register address.
- * @param	new_val Value to write to address.
+ * @param	addr register address.
+ * @param	new_val value to write to address.
  * @retval	None
  */
 void TMC5160_write_value(SPI_HandleTypeDef* hspi, uint8_t addr, uint32_t new_val) {
@@ -37,9 +37,9 @@ void TMC5160_write_value(SPI_HandleTypeDef* hspi, uint8_t addr, uint32_t new_val
 
 /**
  * @brief	Read value from register.
- * @param	hspi hspi pointer to a SPI_HandleTypeDef structure that contains
+ * @param	hspi pointer to a SPI_HandleTypeDef structure that contains
  *               the configuration information for SPI module.
- * @param	addr Register address.
+ * @param	addr register address.
  * @retval	Value read from register
  */
 uint32_t TMC5160_read_reg(SPI_HandleTypeDef* hspi, uint8_t addr) {
@@ -64,13 +64,13 @@ uint32_t TMC5160_read_reg(SPI_HandleTypeDef* hspi, uint8_t addr) {
 /* Private functions ----------------------------------------------------------*/
 /**
  * @brief	Sends a write operation datagram to a TMC5160 device.
- * @param 	hspi hspi pointer to a SPI_HandleTypeDef structure that contains
+ * @param 	hspi pointer to a SPI_HandleTypeDef structure that contains
  *               the configuration information for SPI module.
  * @param 	addr 7-bit register address.
- * @param	b1 First byte (MSB).
- * @param	b2 Second byte.
- * @param	b3 Third byte.
- * @param	b4 Fourth byte.
+ * @param	b1 first byte (MSB).
+ * @param	b2 second byte.
+ * @param	b3 third byte.
+ * @param	b4 fourth byte.
  * @retval	None
  */
 void TMC5160_write_datagram(SPI_HandleTypeDef* hspi, uint8_t addr, uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4) {
@@ -85,8 +85,8 @@ void TMC5160_write_datagram(SPI_HandleTypeDef* hspi, uint8_t addr, uint8_t b1, u
  * 			same array with data received.
  * @param	hspi pointer to a SPI_HandleTypeDef structure that contains
  *               the configuration information for SPI module.
- * @param	buf Data array.
- * @param	size Amount of data to be sent and received.
+ * @param	buf  data array.
+ * @param	size amount of data to be sent and received.
  * @retval	None
  */
 void TMC5160_read_write_array(SPI_HandleTypeDef* hspi, uint8_t* buf, size_t size) {
