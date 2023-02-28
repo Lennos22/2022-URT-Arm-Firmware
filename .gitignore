@@ -1,10 +1,13 @@
 ### Eclipse ###
-# ignore ALL FILES in .settings folder
+# Ignore ALL FILES in .settings folder
 /.settings/
 # Ignore ALL FILES in Debug build
 /Debug/
-# ignore ALL FILES in Release build
+# Ignore ALL FILES in Release build
 /Release/
 
-# ignore ALL .launch files
+# Locally stored "Eclipse launch configurations"
 *.launch
+
+# MX-specific (CubeMX Development Tools)
+.mxproject
