@@ -31,6 +31,8 @@
 #include <rmw_microros/rmw_microros.h>
 
 #include <std_msgs/msg/int32.h>
+#include <pol_mmservo_serial.h>
+#include <pol_smc24v12_serial.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -437,6 +439,13 @@ void StartDefaultTask(void *argument)
 
   msg.data = 0;
 
+  SMC_set_baud_rate(&huart4);
+  pol_MM_set_accel(&huart4, 0x0C, 0x00, 100);
+  pol_MM_set_speed(&huart4, 0x0C, 0x00, 100);
+
+  pol_MM_set_accel(&huart4, 0x0C, 0x01, 0);
+  pol_MM_set_speed(&huart4, 0x0C, 0x01, 0);
+
   for(;;)
   {
     rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
@@ -444,6 +453,12 @@ void StartDefaultTask(void *argument)
     {
       printf("Error publishing (line %d)\n", __LINE__);
     }
+
+    pol_MM_set_target(&huart4, 0x0C, 0x00, 1500*4);
+    pol_MM_set_target(&huart4, 0x0C, 0x01, 1000*4);
+    osDelay(2000);
+    pol_MM_set_target(&huart4, 0x0C, 0x00, 2000*4);
+    pol_MM_set_target(&huart4, 0x0C, 0x01, 2000*4);
 
     msg.data++;
     osDelay(1000);
